@@ -1,6 +1,7 @@
 # Chess 2
 A Java prototype of Oats Jenkins' Chess 2, as shown in his video:<br>
 https://www.youtube.com/watch?v=mcivL8u176Y
+All credits for artwork and game concept to go Oats Jenkins.
 
 JDK 18 is required to play this game, you can download it here:<br>
 https://www.oracle.com/java/technologies/javase/jdk18-archive-downloads.html
