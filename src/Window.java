@@ -506,6 +506,7 @@ public class Window extends JPanel implements MouseListener {
                 jailSelecting = null;
                 tiles.clear();
 
+                Piece temp = board[selectedY][selectedX];
                 if(!turn)
                 {
                     board[mouseY][7] = board[selectedY][selectedX];
@@ -520,6 +521,7 @@ public class Window extends JPanel implements MouseListener {
                     selectedY = mouseY;
                     selectedX = 0;
                 }
+                board[selectedY][selectedX] = temp;
 
                 highlight(board[selectedY][selectedX].getName(), selectedX, selectedY);
             }
@@ -640,13 +642,14 @@ public class Window extends JPanel implements MouseListener {
         }
         if(e.getButton() == MouseEvent.BUTTON3)
         {
-            canRescue = null;
-            jailSelecting = null;
-            jailRescuing = null;
-
-            bearSelected = false;
-            selected = false;
-            tiles.clear();
+            if(jailRescuing == null)
+            {
+                canRescue = null;
+                jailSelecting = null;
+                bearSelected = false;
+                selected = false;
+                tiles.clear();
+            }
         }
     }
 
@@ -785,16 +788,36 @@ public class Window extends JPanel implements MouseListener {
                     if(!turn && xPos == 7)
                     {
                         if(yPos == 3 && jailW1.hasPiece() && jailW1.getPiece().hasBanana())
-                            canRescue = jailW1;
+                        {
+                            if((board[2][7] != null && board[1][7] == null) ||
+                                    (board[3][6] != null && board[3][5] == null) ||
+                                    (board[4][7] != null && board[5][7] == null))
+                                canRescue = jailW1;
+                        }
                         if(yPos == 4 && jailW2.hasPiece() && jailW2.getPiece().hasBanana())
-                            canRescue = jailW2;
+                        {
+                            if((board[3][7] != null && board[2][7] == null) ||
+                                    (board[4][6] != null && board[4][5] == null) ||
+                                    (board[5][7] != null && board[6][7] == null))
+                                canRescue = jailW2;
+                        }
                     }
                     else if(turn && xPos == 0)
                     {
                         if(yPos == 3 && jailB1.hasPiece() && jailB1.getPiece().hasBanana())
-                            canRescue = jailB1;
+                        {
+                            if((board[2][0] != null && board[1][0] == null) ||
+                                    (board[3][1] != null && board[3][2] == null) ||
+                                    (board[4][0] != null && board[5][0] == null))
+                                canRescue = jailB1;
+                        }
                         if(yPos == 4 && jailB2.hasPiece() && jailB2.getPiece().hasBanana())
-                            canRescue = jailB2;
+                        {
+                            if((board[3][0] != null && board[2][0] == null) ||
+                                    (board[4][1] != null && board[4][2] == null) ||
+                                    (board[5][0] != null && board[6][0] == null))
+                                canRescue = jailB2;
+                        }
                     }
                 }
 
