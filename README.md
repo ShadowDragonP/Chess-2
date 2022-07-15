@@ -9,7 +9,7 @@ https://www.oracle.com/java/technologies/javase/jdk18-archive-downloads.html
 
 This was a fun project, there were a lot of challenges in making this but innovation is never easy.
 
-Controls:<br>
+Controls:
 - Left click: Select piece and choose tile to move to.
 - Right click: Cancel selection.
 
